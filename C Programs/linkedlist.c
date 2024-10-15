@@ -82,6 +82,33 @@ void delete(struct node **start,int k)
 		}
 	}
 }
+
+void deletepos(struct node **start,int k)
+{
+	int n=1;
+	struct node *next,*before;
+	next=*start;
+	if(k==1)
+	{
+		*start=next->link;
+	}
+	else{
+		while(next!=NULL)
+		{
+			if(n==k)
+			{
+				before->link=next->link;
+				printf("\n Deleted");
+				break;
+			}
+			else{
+				before=next;
+				next=next->link;
+				n++;
+			}
+		}
+	}
+}
 			
 void main()
 {
@@ -89,7 +116,7 @@ void main()
 	struct node *start,*q;
 	start=NULL;
 	do{
-		printf("\n1.Insertion\t\t2.Display\t\t3.Delete\t\t0.exit");
+		printf("\n\n1.Insertion\t\t2.Display\t\t3.Delete by value\t\t4.Delete by position\t\t0.exit");
 		printf("\n Enter your choice: ");
 		scanf("%d",&ch);
 		switch(ch)
@@ -105,6 +132,11 @@ void main()
 			case 3:printf("\n Enter the data to delete: ");
 				scanf("%d",&data);
 				delete(&start,data);
+				break;
+			
+			case 4:printf("\n Enter the position to delete: ");
+				scanf("%d",&data);
+				deletepos(&start,data);
 				break;
 		
 			default:printf("\n wrong option");
