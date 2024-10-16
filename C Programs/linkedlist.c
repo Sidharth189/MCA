@@ -31,6 +31,7 @@ void insertion(struct node **start,int d)
 	else{
 		printf("Memory allocation failed!!");
 	}
+	printf("\n Inserted !!!");
 }
 
 void display(struct node *start)
@@ -127,14 +128,49 @@ void search(struct node *start,int k)
 		}
 	}
 }
-			
+
+void reverse(struct node **start)
+{
+	struct node *before=NULL, *next=NULL,*q=*start;
+	while(q!=NULL)
+	{
+		next=q->link;
+		q->link=before;
+		before=q;
+		q=next;
+	}
+	*start=before;
+	printf("\n Reversed!!");
+}
+
+void insertpos(struct node **start,int n,int d)
+{
+	int i;
+	struct node *temp=malloc(sizeof(struct node));
+	struct node *q=*start;
+	temp->data=d;
+	if(n==1)
+	{
+		temp->link=*start;
+		*start=temp;
+	}
+	else{
+		for(i=1;i<n-1;i++)
+		{
+			q=q->link;
+		}
+		temp->link=q->link;
+		q->link=temp;
+	}
+	printf("\n Inserted !!!");
+}		
 void main()
 {
-	int ch,data;
+	int ch,data,k;
 	struct node *start,*q;
 	start=NULL;
 	do{
-		printf("\n\n1.Insertion\t\t2.Display\t\t3.Delete by value\t\t4.Delete by position\t\t5.Search\t\t0.exit");
+		printf("\n\n1.Insertion\t\t7.Insertion at position\t\t2.Display\t\t3.Delete by value\n4.Delete by position\t\t5.Search\t\t6.Reversal\t\t0.exit");
 		printf("\n Enter your choice: ");
 		scanf("%d",&ch);
 		switch(ch)
@@ -152,7 +188,7 @@ void main()
 				delete(&start,data);
 				break;
 			
-			case 4:printf("\n Enter the position to delete: ");
+			case 4:printf("\n Enter the position of data to delete: ");
 				scanf("%d",&data);
 				deletepos(&start,data);
 				break;
@@ -160,6 +196,16 @@ void main()
 			case 5:printf("\n Enter the data to search: ");
 				scanf("%d",&data);
 				search(start,data);
+				break;
+				
+			case 6:reverse(&start);
+				break;
+				
+			case 7:printf("\n Enter the position: ");
+				scanf("%d",&k);
+				printf("\n Enter the data :");
+				scanf("%d",&data);
+				insertpos(&start,k,data);
 				break;
 		
 			default:printf("\n wrong option");
