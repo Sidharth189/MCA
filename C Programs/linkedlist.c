@@ -109,6 +109,24 @@ void deletepos(struct node **start,int k)
 		}
 	}
 }
+
+void search(struct node *start,int k)
+{
+	struct node *q=start;
+	int i=1;
+	while(q!=NULL)
+	{
+		if(q->data==k)
+		{
+			printf("\nElement found at position %d",i);
+			break;
+		}
+		else{
+			i++;
+			q=q->link;
+		}
+	}
+}
 			
 void main()
 {
@@ -116,7 +134,7 @@ void main()
 	struct node *start,*q;
 	start=NULL;
 	do{
-		printf("\n\n1.Insertion\t\t2.Display\t\t3.Delete by value\t\t4.Delete by position\t\t0.exit");
+		printf("\n\n1.Insertion\t\t2.Display\t\t3.Delete by value\t\t4.Delete by position\t\t5.Search\t\t0.exit");
 		printf("\n Enter your choice: ");
 		scanf("%d",&ch);
 		switch(ch)
@@ -137,6 +155,11 @@ void main()
 			case 4:printf("\n Enter the position to delete: ");
 				scanf("%d",&data);
 				deletepos(&start,data);
+				break;
+
+			case 5:printf("\n Enter the data to search: ");
+				scanf("%d",&data);
+				search(start,data);
 				break;
 		
 			default:printf("\n wrong option");
