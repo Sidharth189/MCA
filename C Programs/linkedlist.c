@@ -163,14 +163,76 @@ void insertpos(struct node **start,int n,int d)
 		q->link=temp;
 	}
 	printf("\n Inserted !!!");
-}		
+}
+
+void evendeletion(struct node **start)
+{
+	struct node *temp=*start,*previous;
+	previous=temp;
+	int n=1;
+	if(*start==NULL)
+	{
+		printf("\n Empty list");
+		return;
+	}
+	while(temp!=NULL)
+	{
+		if(n%2==0)
+		{
+			previous->link=temp->link;
+			previous=temp;
+			n++;
+			temp=temp->link;
+		}
+		else{
+			n++;
+			temp=temp->link;
+		}
+	}
+	printf("\n Deleted !!!");
+}
+
+void odd_del(struct node **start)
+{
+	struct node *temp=*start,*before;
+	int n=1;
+	before=temp;
+	if(*start==NULL)
+	{
+		printf("\n Empty list !!");
+		return;
+	}
+	while(temp!=NULL)
+	{
+		if(n==1)
+		{
+			temp=temp->link;
+			free(before);
+			*start=temp;
+			before=temp;
+			n++;
+		}
+		else if(n%2!=0)
+		{
+			before->link=temp->link;
+			n++;
+			before=temp;
+			temp=temp->link;
+			free(before);
+		}
+		else{
+			temp=temp->link;
+			n++;
+		}
+	}
+}
 void main()
 {
 	int ch,data,k;
 	struct node *start,*q;
 	start=NULL;
 	do{
-		printf("\n\n1.Insertion\t\t7.Insertion at position\t\t2.Display\t\t3.Delete by value\n4.Delete by position\t\t5.Search\t\t6.Reversal\t\t0.exit");
+		printf("\n\n1.Insertion\t\t2.Display\t\t3.Delete by value\n4.Delete by position\t\t5.Search\t\t6.Reversal\n7.Insertion at position\t\t8.Even entry deletion\t\t9.Odd entry deletion\t\t0.exit");
 		printf("\n Enter your choice: ");
 		scanf("%d",&ch);
 		switch(ch)
@@ -206,6 +268,12 @@ void main()
 				printf("\n Enter the data :");
 				scanf("%d",&data);
 				insertpos(&start,k,data);
+				break;
+			
+			case 8:evendeletion(&start);
+				break;
+
+			case 9:odd_del(&start);
 				break;
 		
 			default:printf("\n wrong option");
