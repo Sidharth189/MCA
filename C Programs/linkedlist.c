@@ -194,7 +194,7 @@ void evendeletion(struct node **start)
 
 void odd_del(struct node **start)
 {
-	struct node *temp=*start,*before;
+	struct node *temp=*start,*before=NULL;
 	int n=1;
 	before=temp;
 	if(*start==NULL)
@@ -206,10 +206,9 @@ void odd_del(struct node **start)
 	{
 		if(n==1)
 		{
+			*start=temp->link;
 			temp=temp->link;
 			free(before);
-			*start=temp;
-			before=temp;
 			n++;
 		}
 		else if(n%2!=0)
@@ -221,10 +220,12 @@ void odd_del(struct node **start)
 			free(before);
 		}
 		else{
+			before=temp;
 			temp=temp->link;
 			n++;
 		}
 	}
+	printf("\n Deleted !!!");
 }
 void main()
 {
