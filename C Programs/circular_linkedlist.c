@@ -58,25 +58,38 @@ void insertion_end()
 
 void insert_pos()
 {
-    struct node *q=head,*temp=create_node();
     int i=1,pos;
     
     printf("\n Enter the position: ");
     scanf("%d",&pos);
-    
-    if(head==NULL)
+
+    if(pos==1)
     {
-        printf("\n Empty list !!\n");
+        insertion_begin();
         return;
     }
+
+    struct node *q=head,*before=q,*temp=create_node();
+    
     do{
-        if(i==n)
+        if(i==pos)
         {
-            temp->link=q->link;
-            
-            
+            temp->link=q;
+            before->link=temp;
+            printf("\n Inserted !!\n");
+            return;   
+        }
+        else{
+            i++;
+            before=q;
+            q=q->link;
         }
     }while(q!=head);
+
+    if(i<pos)
+    {
+        printf("\n Invalid position !!");
+    }
 }
 void delete_begin()
 {
@@ -124,6 +137,39 @@ void delete_end()
     printf("\n Deleted !!\n");
 }
 
+void delete_pos()
+{
+    int pos,i=1;
+    printf("\n Enter the psoition: ");
+    scanf("%d",&pos);
+
+    if(head==NULL)
+    {
+        printf("\n Empty list !!");
+    }
+
+    if(pos==1)
+    {
+        delete_begin();
+        return;
+    }
+
+    struct node* q=head,*before=q;
+    do{
+        if(i==pos)
+        {
+            before->link=q->link;
+            break;
+        }
+        else{
+            before=q;
+            q=q->link;
+            i++;
+        }
+    }while(q!=head);
+    printf("\n Deleted !!");
+}
+
 void display()
 {
     struct node*q=head;
@@ -156,7 +202,7 @@ void main()
             case 2:insertion_end();
                 break;
             
-            case 3://insert_pos();
+            case 3:insert_pos();
                 break;
             
             case 4:delete_begin();
@@ -165,7 +211,8 @@ void main()
             case 5:delete_end();
                 break;
             
-            case 6:break;
+            case 6:delete_pos();
+                break;
             
             case 7:display();
                 break;
