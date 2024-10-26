@@ -52,19 +52,13 @@ void infix_to_prefix(char *exp)
         {
             printf("%c",exp[i]);
         }
-        else{
-            if(exp[i]=='+' || exp[i]=='-')
-            {
-                if(top==-1)
-                {
-                    push(exp[i]);
-                }
-                while(peek(temp)<=1 || top==-1)
-                {
-                    pop(temp[top--]);
-                }
-                temp[++top]=exp[i];
-            }
+        else if(exp[i]=='(')
+        {
+            push(exp[i],&temp[i]);
+        }
+        else if(exp[i]==')')
+        {
+            while(tem)
         }
     }
 }
