@@ -193,12 +193,26 @@ void search(struct node* root,int key)
 
 }
 
+void leaf_node_count(struct node* root,int* count)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(root->left==NULL && root->right==NULL)
+    {
+        (*count)++;
+    }
+    leaf_node_count(root->left,count);
+    leaf_node_count(root->right,count);
+}
+
 void main()
 {
-    int ch,key;
+    int ch,key,count=0;
     struct node* root=NULL;
     do{
-        printf("\n1.Insertion\t\t2.Deletion\t\t3.In-order\n4.Pre-order\t\t5.Post-order\t\t6.Search\t\t0.Exit");
+        printf("\n1.Insertion\t\t2.Deletion\t\t3.In-order\n4.Pre-order\t\t5.Post-order\t\t6.Search\t\t7.Numer of leaf nodes\t\t0.Exit");
         printf("\n Enter  your choice: ");
         scanf("%d",&ch);
 
@@ -227,6 +241,10 @@ void main()
             case 6:printf("Enter the data to be searched: ");
                 scanf("%d",&key);
                 search(root,key);
+                break;
+
+            case 7:leaf_node_count(root,&count);
+                printf("Number of leaf nodes: %d",count);
                 break;
 
             case 0:exit(0);break;
