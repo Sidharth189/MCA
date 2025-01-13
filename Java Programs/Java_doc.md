@@ -65,4 +65,35 @@ In this case:
 
 ## Java User Input (Scanner)
 
- 
+## Java Type Casting
+
+Assigning a value of one primitive data type to another type.<br>
+There are two types of casting: <ul>
+<li><strong>Widening casting</strong> - Automatically converts a smaller type to a larger type.</li>
+    <code>int myInt = 9;<br>
+    double myDouble = myInt;</code>
+<li><strong>Narrowing Casting</strong> - Manually convert a larger type to a smaller type </li>
+    <code>double myDouble = 9.78d;<br>
+    int myInt = (int) myDouble;</code>
+</ul>
+
+## String Concatenation
+
+<code>+</code> operator can be used to concatenate two strings.
+
+    System.out.println(firstName + " " + lastName);
+
+<code>concat()</code> method is used to concat two strings. It creates a space between the two strings during concatenation.
+
+    System.out.println(firstName.concat(lastName));
+
+<ul>
+<li>If you add a string and a number , then the result will be a string concatenation.</li>
+</ul>
+
+## Math class
+
+<code>Math.random()</code> returns a random number between <strong>0.0 (inclusive) and 1.0 (exclusive) </strong><br>
+To generate a number between a specific range :
+
+    double randomNumber = Math.random() * (max - min) + min;
