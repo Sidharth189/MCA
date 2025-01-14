@@ -107,7 +107,7 @@ It is used to iterate through elements in an array or other datasets.
 ## Java Arrays
 
 To declare an array :
-    data-type[] array-name;
+    <pre>data-type[] array-name;</pre>
 To initialize an array: 
-    data-type[] array-name={data,data,....};
+    <pre>data-type[] array-name={data,data,....};</pre>
 We can access the elements using the index-number.
