@@ -65,6 +65,26 @@ In this case:
 
 ## Java User Input (Scanner)
 
+The <code>Scanner</code> class is used to read input from various sources, such as the console (keyboard), files, or strings. It provides a convenient way to capture and parse data in different formats (e.g., integers, floating-point numbers, strings) and is commonly used for interactive applications where user input is required.<br>
+
+<code>System.in</code> is an InputStream that represents the input from the user (usually via the keyboard).
+When you pass <code>System.in</code> to the Scanner constructor, it tells the Scanner to read input from this stream (i.e., from the console).
+
+### How <code>system.in</code> works ?
+<ul>
+<li><code>System.in</code> is a low-level byte stream that handles the keyboard input.</li>
+<li><code>Scanner</code> works by converting these bytes into a format that is easier to work with (like int, double, String, etc.).</li>
+<li><strong>The Scanner class provides convenient methods to read different types of data, such as:</strong></li>
+<ul>
+<li><code>nextLine()</code>: Reads an entire line of text (String).</li>
+<li><code>nextInt()</code>: Reads an integer.</li>
+<li><code>nextDouble()</code>: Reads a floating-point number.</li>
+<li><code>next()</code>: Reads a single token (like a word).</li>
+</ul>
+</ul>
+
+Without passing <code>System.in</code>, the Scanner would not know where to read input from. By passing <code>System.in</code>, you're specifically telling the Scanner to read from the standard input stream, which in most environments is the keyboard.
+
 ## Java Type Casting
 
 Assigning a value of one primitive data type to another type.<br>
