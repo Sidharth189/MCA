@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+class Matrix{
+	
+	int rows,cols;
+	int[][] elements;  //declaration of an array
+	
+	void setDimensions(int a,int b)
+	{
+		this.rows=a;
+		this.cols=b;
+	}
+	
+	void readElements()
+	{
+		elements=new int[rows][cols];
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				elements[i][j]=sc.nextInt();
+			}
+		}
+	}
+	
+	void addMatrix(Matrix obj)
+	{
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				System.out.print(this.elements[i][j]+obj.elements[i][j]+" ");
+			}
+			System.out.print("\n");
+		}
+	}
+}
+
+class Main{
+	public static void main(String[] a){
+		System.out.print("Enter matrix dimensions: ");
+		
+		Scanner sc=new Scanner(System.in);
+		int rows,cols;
+		
+		rows=sc.nextInt();
+		cols=sc.nextInt();
+		
+		Matrix m1,m2;
+		
+		m1=new Matrix();
+		m1.setDimensions(rows,cols);
+		System.out.print("Enter the first matrix: ");
+		m1.readElements();
+		
+		m2=new Matrix();
+		m2.setDimensions(rows,cols);
+		System.out.print("Enter the second matrix: ");
+		m2.readElements();
+
+		System.out.print("Sum: \n");
+		m1.addMatrix(m2);
+		
+	}
+}

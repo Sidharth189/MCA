@@ -117,3 +117,17 @@ There are two types of casting: <ul>
 To generate a number between a specific range :
 
     double randomNumber = Math.random() * (max - min) + min;
+
+## For-Each Loop
+
+It is used to iterate through elements in an array or other datasets.
+    for (type variableName : arrayName) {
+      // code block to be executed
+    }
+## Java Arrays
+
+To declare an array :
+    <pre>data-type[] array-name;</pre>
+To initialize an array: 
+    <pre>data-type[] array-name={data,data,....};</pre>
+We can access the elements using the index-number.
