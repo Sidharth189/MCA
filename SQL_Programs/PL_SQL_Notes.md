@@ -193,18 +193,76 @@ You can use one IF-THEN or IF-THEN-ELSIF statement inside another IF-THEN or IF-
 
 In this loop structure, sequence of statements is enclosed between the <code>LOOP</code> and the <code>END LOOP</code> statements. At each iteration, the sequence of statements is executed and then control resumes at the top of the loop.
 
+    declare
+
+    num int:=0;
+
+    begin
+
+    loop
+    dbms_output.put_line('Hi');
+    num:=num+1;
+    if num>2
+    then exit;
+    end if;
+    end loop;
+
+    end;
+
 ### while loop
 
 Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body.
 
+    declare 
+    num int := 0;
+    begin
+    while num<3 loop
+    dbms_output.put_line(num);
+    num := num + 1;
+    end loop;
+    end;
+
 ### for loop 
 
 Execute a sequence of statements multiple times and abbreviates the code that manages the loop variable.
+
+    declare
+    num int;
+    begin
+    for i in 1..3 loop
+    dbms_output.put_line('Hi');
+    end loop;
+    end;
 
 ### Nested loops
 
 You can use one or more loop inside any another basic loop, while, or for loop.
 
 <b>PL/SQL loops can be labeled</b>. The label should be enclosed by double angle brackets <code>(<< and >>)</code> and appear at the beginning of the LOOP statement. The label name can also appear at the end of the LOOP statement.
+
+    begin
+    for i in 0..2 loop
+    for j in 1..3 loop
+        dbms_output.put_line(i||' '||j);
+    end loop;
+    end loop;
+    end;
+
+### Labelling Loops
+
+PL/SQL loops can be labeled. The label should be enclosed by double angle brackets (<< and >>) and appear at the beginning of the LOOP statement. The label name can also appear at the end of the LOOP statement.
+
+    DECLARE 
+    i number(1); 
+    j number(1); 
+    BEGIN 
+    << outer_loop >> 
+    FOR i IN 1..3 LOOP 
+        << inner_loop >> 
+        FOR j IN 1..3 LOOP 
+            dbms_output.put_line('i is: '|| i || ' and j is: ' || j); 
+        END loop inner_loop; 
+    END loop outer_loop; 
+    END; 
 
 
