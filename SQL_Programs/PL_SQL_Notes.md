@@ -265,4 +265,166 @@ PL/SQL loops can be labeled. The label should be enclosed by double angle bracke
     END loop outer_loop; 
     END; 
 
+## Loop Control Statements
 
+### EXIT statement
+
+The Exit statement completes the loop and control passes to the statement immediately after the END LOOP.
+
+### CONTINUE statement
+
+Causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.
+
+### GOTO statement
+
+Transfers control to the labeled statement. Though it is not advised to use the GOTO statement in your program.
+
+## String Functions and Operators
+
+ASCII(x);
+
+Returns the ASCII value of the character x.
+	
+CHR(x);
+
+Returns the character with the ASCII value of x.
+	
+CONCAT(x, y);
+
+Concatenates the strings x and y and returns the appended string.
+	
+INITCAP(x);
+
+Converts the initial letter of each word in x to uppercase and returns that string.
+	
+INSTR(x, find_string [, start] [, occurrence]);
+
+Searches for find_string in x and returns the position at which it occurs.
+	
+INSTRB(x);
+
+Returns the location of a string within another string, but returns the value in bytes.
+	
+LENGTH(x);
+
+Returns the number of characters in x.
+	
+LENGTHB(x);
+
+Returns the length of a character string in bytes for single byte character set.
+	
+LOWER(x);
+
+Converts the letters in x to lowercase and returns that string.
+	
+LPAD(x, width [, pad_string]) ;
+
+Pads x with spaces to the left, to bring the total length of the string up to width characters.
+	
+LTRIM(x [, trim_string]);
+
+Trims characters from the left of x.
+	
+NANVL(x, value);
+
+Returns value if x matches the NaN special value (not a number), otherwise x is returned.
+	
+NLS_INITCAP(x);
+
+Same as the INITCAP function except that it can use a different sort method as specified by NLSSORT.
+
+NLS_LOWER(x) ;
+
+Same as the LOWER function except that it can use a different sort method as specified by NLSSORT.
+	
+NLS_UPPER(x);
+
+Same as the UPPER function except that it can use a different sort method as specified by NLSSORT.
+	
+NLSSORT(x);
+
+Changes the method of sorting the characters. Must be specified before any NLS function; otherwise, the default sort will be used.
+	
+NVL(x, value);
+
+Returns value if x is null; otherwise, x is returned.
+	
+NVL2(x, value1, value2);
+
+Returns value1 if x is not null; if x is null, value2 is returned.
+	
+REPLACE(x, search_string, replace_string);
+
+Searches x for search_string and replaces it with replace_string.
+	
+RPAD(x, width [, pad_string]);
+
+Pads x to the right.
+	
+RTRIM(x [, trim_string]);
+
+Trims x from the right.
+	
+SOUNDEX(x) ;
+
+Returns a string containing the phonetic representation of x.
+	
+SUBSTR(x, start [, length]);
+
+Returns a substring of x that begins at the position specified by start. An optional length for the substring may be supplied.
+	
+SUBSTRB(x);
+
+Same as SUBSTR except that the parameters are expressed in bytes instead of characters for the single-byte character systems.
+	
+TRIM([trim_char FROM) x);
+
+Trims characters from the left and right of x.
+	
+UPPER(x);
+
+Converts the letters in x to uppercase and returns that string.
+
+## Arrays in PL/SQL
+
+The PL/SQL programming language provides a data structure called the <code>VARRAY</code>, which can store a fixed-size sequential collection of elements of the same type. A varray is used to store an ordered collection of data, however it is often better to think of an array as a collection of variables of the same type.
+
+All varrays consist of contiguous memory locations. The lowest address corresponds to the first element and the highest address to the last element.
+
+A varray type is created with the CREATE TYPE statement.<br>
+Basic syntax at schema level: 
+
+    CREATE OR REPLACE TYPE varray_type_name IS VARRAY(n) of <element_type>
+    
+    * varray_type_name is a valid attribute name,
+    * n is the number of elements (maximum) in the varray,
+    * element_type is the data type of the elements of the array.
+
+Basic syntax within a PL/SQL block: 
+
+    TYPE varray_type_name IS VARRAY(n) of <element_type>
+
+
+Questions: 
+Intermediate Question 2:
+Question:
+Write a PL/SQL block that:
+
+Creates a nested table of employee salaries.
+Loops through the table and calculates the total salary and average salary of all employees.
+Prints the total and average salary.
+Learning Goal:
+
+Get hands-on experience with nested tables and looping through collections.
+Learn how to calculate aggregates (like sum and average) within a loop.
+Advanced Question 3:
+Question:
+Write a PL/SQL block that:
+
+Creates a record type that stores information about an employee (ID, Name, Salary).
+Initializes a table of records with data for multiple employees.
+Loops through the table, checks if the salary of each employee is below the average salary, and prints the employee's name and salary if their salary is below the average.
+Learning Goal:
+
+Master working with records and tables of records.
+Learn how to dynamically calculate averages and use them to make decisions inside loops.
