@@ -404,27 +404,76 @@ Basic syntax within a PL/SQL block:
 
     TYPE varray_type_name IS VARRAY(n) of <element_type>
 
+<i><b>Question:</b> Initialize the array through a loop and print it.</i>
 
-Questions: 
-Intermediate Question 2:
-Question:
-Write a PL/SQL block that:
+    DECLARE
+        type arr is varray(5) of int;
+        arr1 arr := arr();
+        total int;
+    BEGIN
+        arr1.extend(5);
+        for i in 1..5 loop
+            arr1(i) := i;
+        end loop;
+        
+        total := arr1.count;
+        
+        for i in 1..total loop
+            dbms_output.put_line(arr1(i));
+        end loop;
+    END;
 
-Creates a nested table of employee salaries.
+<i><b>Question:</b> Creates a nested table of employee salaries.
 Loops through the table and calculates the total salary and average salary of all employees.
-Prints the total and average salary.
-Learning Goal:
-
-Get hands-on experience with nested tables and looping through collections.
-Learn how to calculate aggregates (like sum and average) within a loop.
-Advanced Question 3:
-Question:
+Prints the total and average salary.</i>
+<i><b>
+Question:</b>
 Write a PL/SQL block that:
-
 Creates a record type that stores information about an employee (ID, Name, Salary).
 Initializes a table of records with data for multiple employees.
-Loops through the table, checks if the salary of each employee is below the average salary, and prints the employee's name and salary if their salary is below the average.
-Learning Goal:
+Loops through the table, checks if the salary of each employee is below the average salary, and prints the employee's name and salary if their salary is below the average.</i>
 
-Master working with records and tables of records.
-Learn how to dynamically calculate averages and use them to make decisions inside loops.
+    DECLARE
+    -- Step 1: Define a record type for employee information
+    TYPE employee_record IS RECORD (
+        id    NUMBER,
+        name  VARCHAR2(100),
+        salary NUMBER
+    );
+
+    -- Step 2: Define a nested table type of the employee record
+    TYPE employee_table IS TABLE OF employee_record;
+
+    -- Step 3: Initialize a table of records with employee data
+    employees employee_table := employee_table(
+        employee_record(1, 'John Doe', 5000),
+        employee_record(2, 'Jane Smith', 6000),
+        employee_record(3, 'Alice Johnson', 4500),
+        employee_record(4, 'Bob Brown', 7000),
+        employee_record(5, 'Charlie Davis', 4000)
+    );
+
+    -- Variables to store total salary and average salary
+    total_salary NUMBER := 0;
+    average_salary NUMBER;
+    BEGIN
+    -- Step 4: Calculate the total salary of all employees
+    FOR i IN 1 .. employees.COUNT LOOP
+        total_salary := total_salary + employees(i).salary;
+    END LOOP;
+
+    -- Step 5: Calculate the average salary
+    average_salary := total_salary / employees.COUNT;
+
+    -- Step 6: Print the average salary
+    DBMS_OUTPUT.PUT_LINE('Average Salary: ' || average_salary);
+
+    -- Step 7: Loop through the table and print employees with salary below average
+    DBMS_OUTPUT.PUT_LINE('Employees with salary below average:');
+    FOR i IN 1 .. employees.COUNT LOOP
+        IF employees(i).salary < average_salary THEN
+        DBMS_OUTPUT.PUT_LINE('Name: ' || employees(i).name || ', Salary: ' || employees(i).salary);
+        END IF;
+    END LOOP;
+    END;
+    /
